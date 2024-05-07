@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Subject</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!--画面レイアウトのスタイルシートの読み込み-->
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!-- Bootstrap CSSの読み込み -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--IndexedDB関連のJavaScriptの読み込み-->
+    <script src="indexedDB.js">s</script>
+
+    <!-- Chart.jsとグラフ表示のJavaScriptの読み込み -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+
+<body>
+    <header class="bg-light py-3">
+    <div class="container">
+        <h1 id="home">My Subject</h1>
+            <nav class="nav nav-pills">
+                <a class="nav-link text-secondary" href="#home">ホーム</a>
+                <a class="nav-link text-secondary" href="#input">入力</a>
+                <a class="nav-link text-secondary" href="#inOutList">授業一覧</a>
+                <a class="nav-link text-secondary" href="#graph">グラフ</a>
+            </nav>
+    </div>
+    </header>
+    <article class="container mt-4">
+        <!-- 入力 -->
+        <h2 id="input">入力</h2>
+        <section id="inputSection">
+            <form>
+            <div class="row">
+            <!-- 左列 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                <label class="form-label">進捗</label>
+                <input class="form-check-input" name="progress" type="radio" value="出席" checked>出席
+                <input class="form-check-input" name="progress" type="radio" value="欠席">欠席
+                <input class="form-check-input" name="progress" type="radio" value="遅刻">遅刻
+                </div>
+                <div class="mb-3">
+                <label class="form-label">日付</label>
+                <input type="date" id="date" class="form-control">
+                </div>
+            </div>
+            <!-- 右列 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                <label class="form-label">授業カテゴリ</label>
+
+                <select id="category" class="form-select">
+                    <option>-選択してください-</option>
+                    <option>アカデミックリテラシー</option>
+                    <option>プレゼンテーション</option>
+                    <option>数学基礎Ⅰ</option>
+                    <option>基礎英語A</option>
+                    <option>情報社会論Ⅰ</option>
+                    <option>情報マネジメント概論A</option>
+                    <option>経営学入門Ⅰ</option>
+                    <option>初級プログラミングⅠ</option>
+                    <option>データ構造とアルゴリズムⅠ</option>
+                    <option>情報倫理A</option>
+                    <option>ソフトウェア総論Ⅰ</option>
+                    <option>その他</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                <label class="form-label">小テストの点数</label>
+                <input class="form-select" type="number" id="score" placeholder="小テストの点数を入力">点
+                </div>
+                <div class="mb-3">
+                <labe class="form-label">メモ</label>
+                <input class="form-select" type="text" id="memo" placeholder="感想ややりがいを記入">
+                </div>
+            </div>
+            </form>
+        </section>
+        <div class="submit">
+            <button class="btn btn-primary" onclick="regist();">登録する</button>
+        </div>
+
+        <!-- 授業一覧 -->
+        <h2  id="inOutList">授業一覧</h2>
+        <section id="list">
+            <!-- ここに授業一覧を表示します。 -->
+            <script>
+                createList();
+            </script>
+        </section>
+
+        <!-- グラフ -->
+        <h2  id="graph">グラフ</h2>
+        <!-- <hr> -->
+        <section>
+            <!-- ここにグラフを表示します。 -->
+            <canvas id="pieChart"></canvas>
+        </section>
+
+    </article>
+    <footer class="text-center py-3 bg-light mt-4">
+        &copy;MySubject
+    </footer>
+</body>
+
+</html>
